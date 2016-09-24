@@ -1,0 +1,39 @@
+
+- Initialise the Mojo project
+    - Create a new repository at GitHub: acc
+    - On revolver, as merlyn:
+        $ mkdir DevProjects/acc
+        $ cd DevProjects/acc
+        $ git clone https://github.com/merlynkline/acc.git
+        $ ln -s  ln -s ~/DevProjects/acc/acc/ ~/acc
+        $ cd ~/acc
+        - create .gitignore:
+            " /local
+            " /ssl
+            " /LocalBits
+        - Save this file as merlyn@revolver:acc/AccJotter.text
+        $ cd acc
+        - Create initial cpanfile:
+            " requires "Mojolicious", "6.00";
+            " requires "Mojolicious::Plugin::RenderFile", "0.08";
+            " requires "DBIx::Connector", "0.53";
+            " requires "List::MoreUtils";
+            " requires "DBIx::Class::Core";
+            " requires "DBIx::Class::Schema";
+            " requires "DBIx::Class::ResultSet";
+            " requires "DateTime";
+            " requires "DBIx::Class::Migration";
+            " requires "Getopt::Long";
+            " requires "Mojo::Util";
+            " requires "Moose";
+            " requires "PDF::API2";
+            " requires "Try::Tiny";
+            " requires "Mojolicious::Plugin::Mail";
+            " requires "DBD::Pg";
+        $ carton install
+        $ cd ~/DevProjects/acc
+        $ mojo generate app Acc
+    - On revolver, as root:
+        # su - postgres -c "createuser accdev -SdR"
+        # su - postgres -c "psql -U postgres -d postgres -c \"alter user accdev with password 'ac43861';\""
+        # su - postgres -c "psql -U postgres -c \"create database accdev with owner = accdev;\""
